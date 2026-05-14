@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+x64/
+Win32/
+ARM64/
+apps/merc-mapper/src/Merc.Mapper/native/
+captures/
+*.pcap
+*.pcapng
+*:Zone.Identifier

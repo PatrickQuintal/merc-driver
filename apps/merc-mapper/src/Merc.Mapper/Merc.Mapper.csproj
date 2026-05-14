@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ProductionEngine)' == 'true'">
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>MercKeyboardMapperEngine</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Merc.Mapper.Core\Merc.Mapper.Core.csproj" />
+  </ItemGroup>
+
+  <Target Name="ValidateNativeShellHookBinaries" BeforeTargets="Publish">
+    <Error Condition="!Exists('native/win-x64/MercShellHook64.dll') Or !Exists('native/win-x64/MercShellHook32.dll') Or !Exists('native/win-x64/MercShellHookHost32.exe')"
+           Text="Native shell hook binaries are missing. Run apps\merc-mapper\native\MercShellHook\build-release.cmd before publishing." />
+  </Target>
+
+  <ItemGroup Condition="Exists('native/win-x64/MercShellHook64.dll') And Exists('native/win-x64/MercShellHook32.dll') And Exists('native/win-x64/MercShellHookHost32.exe')">
+    <Content Include="native/win-x64/MercShellHook64.dll" Link="MercShellHook64.dll" TargetPath="MercShellHook64.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="native/win-x64/MercShellHook32.dll" Link="MercShellHook32.dll" TargetPath="MercShellHook32.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="native/win-x64/MercShellHookHost32.exe" Link="MercShellHookHost32.exe" TargetPath="MercShellHookHost32.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Allow Windows-targeted .NET projects to restore/build on non-Windows hosts. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+</Project>
