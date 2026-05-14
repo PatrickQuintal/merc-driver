@@ -48,10 +48,11 @@ Default mappings:
 | `gamepad-round-5` | non-extended `VK_CLEAR` / scan `0x4C` | injects number-row `5`; hardware primary is keypad/home-cluster, game-dependent |
 | `gamepad-round-6` | non-extended `Right` / scan `0x4D` | injects number-row `6`; hardware primary is keypad/home-cluster, game-dependent |
 
-Round-number caveat:
+Keypad/home-cluster caveat:
 
 - the Merc hardware primarily reports these physical keys as keypad/home-cluster HID usages, such as keypad `1` / `End`; `gamepad-round-11` primarily reports as keypad add
-- these mappings are console/development-only through the `--keypad-cluster` flag and are hidden from the production GUI
+- these mappings include `gamepad-duck-ctrl` and the round number keys
+- these mappings are enabled by default and are not exposed as a production GUI toggle
 - `merc-mapper` injects replacement number-row scan codes for them when enabled
 - whether the number-row replacement wins is game-dependent; games that bind from Raw Input or DirectInput may still see the primary keypad/home-cluster event
 
@@ -59,7 +60,7 @@ Suppression:
 
 - browser/media/app-launch virtual keys are suppressed by a low-level keyboard hook while the mapper runs
 - mapped outputs are emitted with explicit scan codes; the left gamepad number keys use the number-row scan codes, not keypad scan codes
-- ordinary keypad/home-cluster mappings are disabled by default because global user-mode hooks cannot reliably identify the physical source device
+- ordinary keypad/home-cluster mappings are enabled by default because the Merc gamepad needs them for crouch and the round number keys; normal numpad/home-cluster keys may also be affected
 - consumer-control Raw Input is registered with `RIDEV_NOLEGACY` to prevent Windows shell/app-command handling where Windows honors that flag
 - a native `WH_SHELL` hook suppresses `HSHELL_APPCOMMAND` browser/media/app-launch commands when Windows routes them through the shell
 - mapped browser/app-launch keys are emitted from the suppression hook so the replacement still works if suppression prevents normal key messages
@@ -152,10 +153,10 @@ Most games should use normal held key down/up state. If a specific game/menu nee
 dotnet run --project apps/merc-mapper/src/Merc.Mapper/Merc.Mapper.csproj -- --repeat
 ```
 
-The round number keys and duck/control mapping are disabled by default. In development builds, enable the advanced keypad cluster only when you want those mappings and accept that normal numpad/home-cluster keys may also be affected by the global hook path:
+The round number keys and duck/control mapping are enabled by default. In development builds, use `--no-keypad-cluster` only when you need controlled testing without this global hook path:
 
 ```bash
-dotnet run --project apps/merc-mapper/src/Merc.Mapper/Merc.Mapper.csproj -- --keypad-cluster
+dotnet run --project apps/merc-mapper/src/Merc.Mapper/Merc.Mapper.csproj -- --no-keypad-cluster
 ```
 
 Startup registration is available from the GUI checkbox. Development console startup commands exist for test builds, but production packaging does not expose `Merc.Mapper.exe`.

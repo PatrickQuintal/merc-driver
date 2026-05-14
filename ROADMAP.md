@@ -27,7 +27,7 @@ The goal is to keep the console app stable while using the GUI as the normal con
 
 - Keep key mappings explicit and evidence-backed.
 - Keep logs useful for live testing.
-- Do not add broad global hooks for normal keyboard keys.
+- Treat the default-on keypad/home-cluster hook as an accepted Merc-specific tradeoff, and do not add other broad global hooks without explicit user approval.
 - Keep publishing to `C:\Users\pat_q\Desktop\merc-mapper-run`.
 
 ### 2. Startup Behavior
@@ -48,7 +48,7 @@ Current responsibilities:
 - show recent log events
 - expose startup enable/disable
 - expose repeat mode and repeat timing
-- expose Q and keypad/home-cluster toggles
+- expose Q and repeat controls; keep keypad/home-cluster mapping default-on unless a future design adds an explicit opt-out
 - preserve the console app as a runnable entrypoint
 
 ### 4. Packaging

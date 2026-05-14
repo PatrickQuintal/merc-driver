@@ -550,7 +550,7 @@ bool RegisterUninstall(const wchar_t* installDirectory, bool machineInstall)
 
     bool ok = true;
     ok = ok && RegSetValueExW(key, L"DisplayName", 0, REG_SZ, reinterpret_cast<const BYTE*>(AppName), static_cast<DWORD>((wcslen(AppName) + 1) * sizeof(wchar_t))) == ERROR_SUCCESS;
-    ok = ok && RegSetValueExW(key, L"DisplayVersion", 0, REG_SZ, reinterpret_cast<const BYTE*>(L"0.1.0"), sizeof(L"0.1.0")) == ERROR_SUCCESS;
+    ok = ok && RegSetValueExW(key, L"DisplayVersion", 0, REG_SZ, reinterpret_cast<const BYTE*>(L"1.0.1"), sizeof(L"1.0.1")) == ERROR_SUCCESS;
     ok = ok && RegSetValueExW(key, L"Publisher", 0, REG_SZ, reinterpret_cast<const BYTE*>(L"merc-driver"), sizeof(L"merc-driver")) == ERROR_SUCCESS;
     ok = ok && RegSetValueExW(key, L"InstallLocation", 0, REG_SZ, reinterpret_cast<const BYTE*>(installDirectory), static_cast<DWORD>((wcslen(installDirectory) + 1) * sizeof(wchar_t))) == ERROR_SUCCESS;
     ok = ok && RegSetValueExW(key, L"DisplayIcon", 0, REG_SZ, reinterpret_cast<const BYTE*>(appPath), static_cast<DWORD>((wcslen(appPath) + 1) * sizeof(wchar_t))) == ERROR_SUCCESS;

@@ -3,12 +3,12 @@ namespace Merc.Mapper.Tests;
 public sealed class MapperOptionsTests
 {
     [Fact]
-    public void ParseDefaultsUseSafeMapperSettings()
+    public void ParseDefaultsEnableCoreMapperSettings()
     {
         var options = MapperOptions.Parse([]);
 
         Assert.True(options.EnableQ);
-        Assert.False(options.EnableKeypadCluster);
+        Assert.True(options.EnableKeypadCluster);
         Assert.False(options.EnableRepeat);
         Assert.False(options.InstallStartup);
         Assert.False(options.UninstallStartup);
@@ -23,7 +23,7 @@ public sealed class MapperOptionsTests
     {
         var options = MapperOptions.Parse([
             "--NO-Q",
-            "--KEYPAD-CLUSTER",
+            "--NO-KEYPAD-CLUSTER",
             "--REPEAT",
             "--INSTALL-STARTUP",
             "--UNINSTALL-STARTUP",
@@ -31,7 +31,7 @@ public sealed class MapperOptionsTests
         ]);
 
         Assert.False(options.EnableQ);
-        Assert.True(options.EnableKeypadCluster);
+        Assert.False(options.EnableKeypadCluster);
         Assert.True(options.EnableRepeat);
         Assert.True(options.InstallStartup);
         Assert.True(options.UninstallStartup);

@@ -9,7 +9,7 @@ The app runs as a native Win32 tray GUI with a small .NET 8 mapper engine. It ma
 Download the installer from the GitHub release:
 
 ```text
-https://github.com/PatrickQuintal/merc-driver/releases/download/v1.0.0/MercKeyboardMapperSetup.exe
+https://github.com/PatrickQuintal/merc-driver/releases/download/v1.0.1/MercKeyboardMapperSetup.exe
 ```
 
 The setup wizard installs to:
@@ -86,7 +86,7 @@ Do not create versioned desktop folders for normal iteration.
 
 The mapper handles keys that Windows exposes to user mode through Raw Input, low-level keyboard hooks, shell app-command hooks, or related APIs.
 
-Some Merc keys primarily report as keypad/home-cluster events. Their replacement mappings are game-dependent because user-mode hooks cannot perfectly distinguish them from a normal keyboard's numpad/home cluster. The production GUI hides that advanced mapping path; the development console still exposes `--keypad-cluster` for controlled testing.
+Some Merc keys primarily report as keypad/home-cluster events. Those mappings are enabled by default so crouch and the left gamepad number cluster work in the installed app. The production GUI does not expose a toggle for this path; the development console can disable it with `--no-keypad-cluster` for controlled testing.
 
 Keys that are invisible to normal Windows user-mode input APIs are outside this mapper's scope.
 

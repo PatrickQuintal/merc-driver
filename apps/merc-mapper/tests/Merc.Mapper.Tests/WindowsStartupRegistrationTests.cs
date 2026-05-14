@@ -13,14 +13,14 @@ public sealed class WindowsStartupRegistrationTests
     }
 
     [Fact]
-    public void BuildCommandIncludesDisabledQAndKeypadCluster()
+    public void BuildCommandIncludesDisabledQAndDisabledKeypadCluster()
     {
         var command = WindowsStartupRegistration.BuildCommand(
             @"C:\Merc.Mapper.exe",
-            new MapperOptions(EnableQ: false, EnableKeypadCluster: true));
+            new MapperOptions(EnableQ: false, EnableKeypadCluster: false));
 
         Assert.Contains("--no-q", command);
-        Assert.Contains("--keypad-cluster", command);
+        Assert.Contains("--no-keypad-cluster", command);
     }
 
     [Fact]

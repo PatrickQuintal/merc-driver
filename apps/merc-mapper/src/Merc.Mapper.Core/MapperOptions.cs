@@ -2,7 +2,7 @@ namespace Merc.Mapper;
 
 public sealed record MapperOptions(
     bool EnableQ = true,
-    bool EnableKeypadCluster = false,
+    bool EnableKeypadCluster = true,
     bool EnableRepeat = false,
     bool InstallStartup = false,
     bool UninstallStartup = false,
@@ -17,7 +17,7 @@ public sealed record MapperOptions(
     public static MapperOptions Parse(string[] args)
     {
         var enableQ = !args.Any(arg => arg.Equals("--no-q", StringComparison.OrdinalIgnoreCase));
-        var enableKeypadCluster = args.Any(arg => arg.Equals("--keypad-cluster", StringComparison.OrdinalIgnoreCase));
+        var enableKeypadCluster = !args.Any(arg => arg.Equals("--no-keypad-cluster", StringComparison.OrdinalIgnoreCase));
         var enableRepeat = args.Any(arg => arg.Equals("--repeat", StringComparison.OrdinalIgnoreCase));
         var installStartup = args.Any(arg => arg.Equals("--install-startup", StringComparison.OrdinalIgnoreCase));
         var uninstallStartup = args.Any(arg => arg.Equals("--uninstall-startup", StringComparison.OrdinalIgnoreCase));

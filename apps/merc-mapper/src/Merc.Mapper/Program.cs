@@ -43,7 +43,11 @@ if (!options.EnableQ)
 
 if (options.EnableKeypadCluster)
 {
-    Console.WriteLine("Keypad/home-cluster mappings enabled by --keypad-cluster. These use a global hook and may also affect normal numpad/home-cluster keys.");
+    Console.WriteLine("Keypad/home-cluster mappings enabled. These use a global hook and may also affect normal numpad/home-cluster keys.");
+}
+else
+{
+    Console.WriteLine("Keypad/home-cluster mappings disabled by --no-keypad-cluster.");
 }
 
 if (options.EnableRepeat)
@@ -118,12 +122,14 @@ if (!string.IsNullOrWhiteSpace(mapperFailure))
 static void PrintUsage()
 {
     Console.WriteLine("Merc Mapper");
+    Console.WriteLine("Keypad/home-cluster mappings are enabled by default; use --no-keypad-cluster to disable them.");
+    Console.WriteLine("While enabled, matching normal numpad/home-cluster keys may also be affected.");
     Console.WriteLine();
     Console.WriteLine("Run:");
-    Console.WriteLine("  Merc.Mapper.exe [--no-q] [--keypad-cluster] [--repeat] [--repeat-delay-ms 350] [--repeat-rate-ms 35]");
+    Console.WriteLine("  Merc.Mapper.exe [--no-q] [--no-keypad-cluster] [--repeat] [--repeat-delay-ms 350] [--repeat-rate-ms 35]");
     Console.WriteLine();
     Console.WriteLine("Startup:");
-    Console.WriteLine("  Merc.Mapper.exe --install-startup [--no-q] [--keypad-cluster] [--repeat] [--repeat-delay-ms 350] [--repeat-rate-ms 35]");
+    Console.WriteLine("  Merc.Mapper.exe --install-startup [--no-q] [--no-keypad-cluster] [--repeat] [--repeat-delay-ms 350] [--repeat-rate-ms 35]");
     Console.WriteLine("  Merc.Mapper.exe --uninstall-startup");
 }
 

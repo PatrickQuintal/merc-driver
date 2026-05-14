@@ -83,9 +83,9 @@ public static class WindowsStartupRegistration
             args.Add("--no-q");
         }
 
-        if (options.EnableKeypadCluster)
+        if (!options.EnableKeypadCluster)
         {
-            args.Add("--keypad-cluster");
+            args.Add("--no-keypad-cluster");
         }
 
         if (options.EnableRepeat)

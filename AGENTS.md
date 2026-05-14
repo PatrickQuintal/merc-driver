@@ -36,12 +36,13 @@ The current goal is a usable Windows mapper app:
 - publish only to `C:\Users\pat_q\Desktop\merc-mapper-run` for local testing
 - keep key mappings grounded in probe logs, USBPcap captures, or live observations
 - document game-dependent behavior clearly
+- treat default-on keypad/home-cluster remapping as an accepted product tradeoff for the Merc gamepad, and document its normal-keyboard side effects
 - keep GUI work separated from input-mapping mechanics
 
 ### Do not
 
 - create versioned desktop runner folders
-- globally suppress normal keyboard keys unless there is a precise Merc-specific signature
+- add new global normal-key suppression beyond the accepted keypad/home-cluster mapping without explicit user direction
 - re-add the probe app, captures archive, or driver spike without explicit user direction
 - hide known user-mode boundaries
 - add UI styling or layout beyond the provided wireframe unless the user asks

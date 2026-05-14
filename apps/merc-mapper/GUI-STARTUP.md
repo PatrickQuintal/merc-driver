@@ -82,9 +82,9 @@ Development console commands:
 .\Merc.Mapper.exe --uninstall-startup
 ```
 
-Console startup installs the current console executable path in development builds. If `--no-q`, `--keypad-cluster`, `--repeat`, `--repeat-delay-ms`, or `--repeat-rate-ms` are passed during install, those options are preserved in the console startup command. Production packaging does not expose the console executable.
+Console startup installs the current console executable path in development builds. If `--no-q`, `--no-keypad-cluster`, `--repeat`, `--repeat-delay-ms`, or `--repeat-rate-ms` are passed during install, those options are preserved in the console startup command. Production packaging does not expose the console executable.
 
-GUI startup installs the current native wrapper executable path with `--startup` and preserves the GUI Q and repeat settings. The keypad/home-cluster mapping remains hidden from the production GUI because its global hook path is game-dependent and can affect normal numpad/home-cluster keys.
+GUI startup installs the current native wrapper executable path with `--startup` and preserves the GUI Q and repeat settings. Keypad/home-cluster mappings are enabled by default for crouch and the round number keys, but the production GUI does not expose a toggle for them.
 
 ## GUI Responsibilities
 
@@ -102,6 +102,6 @@ GUI startup installs the current native wrapper executable path with `--startup`
 
 Keep input mapping behavior separate from UI decisions.
 
-The console mapper must remain runnable after GUI work. The GUI launches the console mapper and passes the same documented flags rather than forking mapping rules.
+The console mapper must remain runnable after GUI work. The GUI launches the mapper engine and passes flags only for GUI-exposed settings rather than forking mapping rules.
 
 The native GUI avoids the .NET Desktop Runtime dependency. The packaged app still requires the normal .NET 8 Runtime x64 because `MercKeyboardMapperEngine.exe` remains a framework-dependent .NET mapper engine. The source console app remains available for development, but production packaging uses a GUI-subsystem engine so users do not get a console window.
